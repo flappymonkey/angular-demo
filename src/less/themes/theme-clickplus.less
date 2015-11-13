@@ -1,0 +1,187 @@
+
+@import '../bootstrap/variables';
+@import '../bootstrap/mixins/gradients';
+@import '../app/media-queries';
+
+
+// 
+// Variables to change general look 
+// 
+
+// LAYOUT
+
+@content-bg:                    #f5f7fa;
+@aside-bg:                      #fff;
+// NAVBAR TOP
+
+@clickplus-bg:  #095fd3;
+@clickplus-second-nv-bg:  #444855;
+
+@nav-top-bg:                    @clickplus-bg;
+@nav-top-bg-start:              @nav-top-bg;
+@nav-top-bg-end:                @clickplus-bg;
+@nav-header-bg:                 transparent;
+
+@nav-secondtop-bg:                    @clickplus-second-nv-bg;
+@nav-secondtop-bg-start:              @nav-secondtop-bg;
+@nav-secondtop-bg-end:                @clickplus-second-nv-bg;
+@nav-secondtop-header-bg:                 transparent;
+
+@nav-top-item-desktop:          #fff;
+@nav-top-item-desktop-active:   darken(@nav-top-item-desktop, 20%);
+
+// SIDEBAR
+
+@sidebar-bg:                      @aside-bg;
+
+@sidebar-item-color:              #515253;
+@sidebar-item-color-active:       @nav-top-bg;
+@sidebar-item-bg-active:          darken(@sidebar-bg, 1%);
+
+@sidebar-icon-color:              inherits;
+@sidebar-icon-color-active:       @nav-top-bg;
+
+@sidebar-heading-color:           #919DA8;
+@sidebar-label-color:             @sidebar-item-color;
+
+
+/* ========================================================================
+   Component: layout
+ ========================================================================== */
+body{
+  font: 12px/1.5 tahoma,"microsoft yahei","微软雅黑";
+  background-color: #fff;
+}
+
+/* ========================================================================
+   Component: top-navbar
+ ========================================================================== */
+
+.topnavbar {
+  padding: 0 20px;
+  background-color: @nav-top-bg;;
+  margin-bottom: 0;
+  min-height: 60px;
+  border-radius: 0;
+  border: none;
+  .navbar-header {
+    background-color: @nav-header-bg;
+    #gradient.horizontal(@nav-top-bg-start, @nav-top-bg-end);
+    @media @tablet {
+      background-image: none;
+    }
+    .navbar-brand{
+      height: 60px;
+      padding: 14px 15px;
+    }
+  }
+  
+  .navbar-nav > li > a{
+    line-height: 60px;
+    height: 60px;
+    padding: 0 15px;
+    color: @nav-top-item-desktop;
+  }
+  
+  .nav-wrapper {
+    background-color: @nav-top-bg;
+    #gradient.horizontal(@nav-top-bg-start, @nav-top-bg-end);
+  }
+}
+
+.secondnavbar {
+  padding: 0;
+  height: 50px;
+  margin-bottom: 0;
+  border-radius: 0;
+  background-color: #f2f2f2;
+  border: 0;
+  .navbar-nav{
+    width: 100%;
+    background-color: @nav-secondtop-bg;
+  }
+  .navbar-nav > li > a {
+    line-height: 50px;
+    height: 50px;
+    padding: 0 30px;
+    color: @nav-top-item-desktop;
+    font-size: 16px;
+    border-right: 1px solid #4a5063;
+  }
+  .navbar-nav > .active::after{
+    position: absolute;
+    bottom: -3px;
+    width: 100%;
+    display: block;
+    content: "";
+    border-bottom: 3px solid #096bee;
+  }
+  
+  .nav-wrapper {
+    background-color: @nav-secondtop-bg;
+    #gradient.horizontal(@nav-secondtop-bg-start, @nav-secondtop-bg-end);
+  }
+}
+
+/* ========================================================================
+   Component: sidebar
+ ========================================================================== */
+
+.sidebar {
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #d9d9d9;
+  margin-bottom: 0;
+  padding: 0 10px;
+
+  .nav {
+    > li {
+      > a,
+      > .nav-item {
+        padding: 17px 25px;
+        color: @sidebar-item-color;
+        &:focus, &:hover {
+          color: @sidebar-item-color-active;
+        }
+        // Item icon
+        > em {
+          color: @sidebar-icon-color;
+        }
+      }
+
+      // Active item state
+      &.active,
+      &.open {
+        &,
+        > a,
+        .nav {
+          color: @sidebar-item-color-active;
+        }
+        > a > em {
+          color: @sidebar-icon-color-active;
+        }  
+      }
+    }
+  }
+}
+
+/* ========================================================================
+   Component: main content
+ ========================================================================== */
+section{
+  position: relative;
+}
+section .content-wrapper {
+  padding: 20px 35px;
+  background-color: #fff;
+  h1{
+    font-size: 18px;
+    margin: 0 0 15px;
+    color: #333;
+  }
+  .loading{
+    margin: 200px auto 0;
+    width: 100px;
+    height: 100%;
+    line-height: 100%;
+  }
+}

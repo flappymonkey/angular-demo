@@ -1,0 +1,30 @@
+<aside ng-controller="SidebarController" class="aside" ng-init='menuItems = [
+      {
+        "text": "我的全部标签",
+        "sref": "tag.list"
+      },{
+        "text": "导入标签",
+        "sref": "tag.import"
+      },{
+        "text": "新建标签",
+        "sref": "tag.add"
+      },
+    ]'>
+    <script type="text/ng-template" id="sidebar-renderer.html">
+       <a ng-href="{{$state.href(item.sref, item.params)}}" title="{{item.text}}">
+           <span>{{item.text}}</span>
+       </a>
+    </script>
+    <div class="aside-inner">
+       <nav class="navbar sidebar">
+          <ul class="nav navbar-nav">
+             <li ng-class="getMenuItemPropClasses(item)" ng-repeat="item in menuItems" ng-init="pIndex = $index" ng-include="'sidebar-renderer.html'">
+                 
+             </li>
+          </ul>
+       </nav>
+    </div>
+</aside>
+<section>
+   <div ui-view="" autoscroll="false" ng-class="'ng-fadeInLeft'" class="content-wrapper"></div>
+</section>

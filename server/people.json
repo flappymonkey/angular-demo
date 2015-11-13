@@ -1,0 +1,38 @@
+{
+    "data": {
+        "company": 3,
+        "coverage": 8076,
+        "createTime": {
+            "date": 11,
+            "day": 3,
+            "hours": 10,
+            "minutes": 29,
+            "month": 10,
+            "nanos": 0,
+            "seconds": 9,
+            "time": 1447208949000,
+            "timezoneOffset": -480,
+            "year": 115
+        },
+        "creator": 3,
+        "expire": null,
+        "flag": 1,
+        "id": 1,
+        "memder": 3,
+        "name": "人群1",
+        "tags": "[1,2]",
+        "updateTime": {
+            "date": 11,
+            "day": 3,
+            "hours": 10,
+            "minutes": 46,
+            "month": 10,
+            "nanos": 0,
+            "seconds": 34,
+            "time": 1447209994000,
+            "timezoneOffset": -480,
+            "year": 115
+        }
+    },
+    "success": true
+}

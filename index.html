@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="clickplus">
+
+<head>
+<base href="/">
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="{{app.description}}">
+   <meta name="keywords" content="app, responsive, angular, bootstrap, dashboard, admin">
+   <title data-ng-bind="::pageTitle()"></title>
+   <link rel="stylesheet" href="app/css/bootstrap.css">
+   <link rel="stylesheet" href="app/css/app.css">
+</head>
+
+<body data-ng-class="{ 'layout-fixed' : app.layout.isFixed }">
+   <div class="wrapper">
+      <header class="topnavbar-wrapper">
+         <nav role="navigation" class="navbar topnavbar">
+            <div class="navbar-header">
+               <a href="#/" class="navbar-brand">
+                  <div class="brand-logo">
+                     <img src="app/img/logo.png" alt="App Logo" class="img-responsive" />
+                  </div>
+               </a>
+            </div>
+            <div class="nav-wrapper">
+               <ul class="nav navbar-nav navbar-right">
+                  <li>
+                     <a dropdown-toggle="">
+                        管理员
+                     </a>
+                  </li>
+                  <li>
+                     <a href="/">
+                        <em class="glyphicon glyphicon-off"></em>退出
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+         <script type="text/ng-template" id="second-renderer.html">
+             <a ng-href="{{$state.href(item.sref, item.params)}}" title="{{item.text}}">
+                 <span>{{item.text}}</span>
+             </a>
+          </script>
+         <nav role="navigation" class="navbar secondnavbar">
+            <div class="nav-wrapper">
+               <ul class="nav navbar-nav">
+                  <li ng-class="getMenuItemPropClasses(item)" ng-repeat="item in menuItems" ng-include="'second-renderer.html'"></li>
+               </ul>
+            </div>
+         </nav>
+      </header>
+
+      <div ui-view="" autoscroll="false" ng-class="app.viewAnimation" class="wrapper"></div>
+
+      <footer>
+         
+      </footer>
+   </div>
+   <script src="app/js/base.js"></script>
+   <script src="app/js/app.js"></script>
+   <script type="text/javascript">
+      var company_id = 1;
+   </script>
+</body>
+
+</html>

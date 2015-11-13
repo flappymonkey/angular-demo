@@ -1,0 +1,43 @@
+<div class="loading" ng-show="loading">
+  <div class="ball-pulse">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="tag-list-container" ng-show="!loading">
+    <div class="title-container">
+      <span class="title">我的全部标签</span>
+      <span class="nav-search navbar-right">
+         <span ng-show="!exportConfirm">
+          <button id="export" class="btn" ng-click="exportCheck()">导出标签</button>
+         </span>
+         <span ng-show="exportConfirm">
+          <button id="export" class="btn cancel" ng-click="exportCancel()">取消</button>
+          <button id="export" class="btn" ng-click="exportTag()">确认导出</button>
+         </span>
+         <span class="input-icon pull-right">
+             <input type="text" placeholder="搜索 ..." class="form-control" id="search_input" autocomplete="off" ng-model="filter_value" ng-change="filte(filter_value)" />
+         </span>
+      </span>
+   </div>
+    <table class="display" datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance"></table>
+    <div ng-show="showDelete" class="popup-box" style="left: {{deleteBoxLeft}}px; top: {{deleteBoxTop}}px">
+        <h2>删除标签</h2>
+        <div ng-show="searchingPeople">
+            正在查询标签是否被人群所使用，请稍等
+             <div class="ball-pulse">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div ng-show="!searchingPeople">
+          <p><span>{{searchingResult}}</span>您确认要删除该标签吗？</p>
+          <div>
+              <button class="btn btn-default save" ng-click="doDelete()">确认</button>
+              <button class="btn btn-default" ng-click="cancelDelete()">取消</button>
+          </div>
+        </div>
+    </div>
+</div>

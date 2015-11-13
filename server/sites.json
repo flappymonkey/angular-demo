@@ -1,0 +1,43 @@
+{
+    "data": [{
+        "goal": [{
+            "goal_name": "事件1",
+            "goal_id": 1
+        }, {
+            "goal_name": "事件2",
+            "goal_id": 2
+        }, {
+            "goal_name": "事件3",
+            "goal_id": 3
+        }, {
+            "goal_name": "事件4",
+            "goal_id": 4
+        }, {
+            "goal_name": "事件5",
+            "goal_id": 5
+        }],
+        "idsite": 1,
+        "name": "网站1"
+    }, {
+        "goal": [{
+            "goal_name": "事件1",
+            "goal_id": 6
+        }, {
+            "goal_name": "事件2",
+            "goal_id": 7
+        }, {
+            "goal_name": "事件3",
+            "goal_id": 8
+        }],
+        "idsite": 2,
+        "name": "网站2"
+    }, {
+        "goal": [{
+            "goal_name": "事件1",
+            "goal_id": 9
+        }],
+        "idsite": 2,
+        "name": "网站3"
+    }],
+    "success": true
+}

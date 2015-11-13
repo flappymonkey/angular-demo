@@ -1,0 +1,37 @@
+<div class="loading" ng-show="loading">
+  <div class="ball-pulse">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="people-list-container" ng-show="!loading">
+    <div class="title-container">
+      <span class="title">我的营销人群（{{peoples.length}}）</span>
+      <span class="nav-search navbar-right">
+         <span class="input-icon pull-right">
+             <input type="text" placeholder="搜索 ..." class="form-control" id="search_input" autocomplete="off" ng-model="filter_value" ng-change="filte(filter_value)" />
+         </span>
+      </span>
+   </div>
+    <table class="display" datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance"></table>
+    <div ng-show="showDelete" class="popup-box" style="left: {{deleteBoxLeft}}px; top: {{deleteBoxTop}}px">
+        <h2>删除人群</h2>
+        <p><span></span>您确认要删除该人群吗？</p>
+        <div>
+            <button class="btn btn-default save" ng-click="doDelete()">确认</button>
+            <button class="btn btn-default" ng-click="cancelDelete()">取消</button>
+        </div>
+    </div>
+
+    <div ng-show="showCopy" class="popup-box" style="left: {{copyBoxLeft}}px; top: {{copyBoxTop}}px">
+        <h2>复制营销人群</h2>
+        <div class="form">
+            <input class="form-control" type="text" ng-model="copyName">
+        </div>
+        <div>
+            <button class="btn btn-default save" ng-click="doCopy()">确认</button>
+            <button class="btn btn-default" ng-click="cancelCopy()">取消</button>
+        </div>
+    </div>
+</div>

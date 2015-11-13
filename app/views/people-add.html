@@ -1,0 +1,67 @@
+<div class="loading" ng-show="loading">
+    <div class="ball-pulse">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="people-add-container" ng-show="!loading">
+    <h1>新建营销人群</h1>
+    <div class="outer-box">
+        <form class="form-box form-horizontal">
+            <div class="form-group">
+                <label for="nick" class="col-sm-2 control-label">人群名称</label>
+                <div class="col-sm-8">
+                    <input type="text" id="nick" placeholder="" class="form-control" data-ng-model="people.name" ng-change="verification()" ng-blur="checkNameUni()">
+                    <small class="text-danger" ng-show="bNameExit">
+                        该人群名已经存在，请换个名字
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nick" class="col-sm-2 control-label">所含标签</label>
+                <div class="col-sm-10">
+                    <p>圈定同时具备以下特征的人</p>
+                    <div class="tag-ctn">
+                        <span class="" ng-repeat="tag in people.tagItems">{{tag.name}}<em class="glyphicon glyphicon-remove" ng-click="deleteTag($index)"></em></span>
+                        <button class="btn add" ng-click="showAddTag($event)">
+                            <em class="glyphicon glyphicon-plus"></em>
+                            添加
+                        </button>
+                    </div>
+                    <p class="tip">覆盖人数约：{{people.coverage}} <span ng-show="!people.coverage" class="text-danger">不允许覆盖人群为0哦，请重新设置标签</span></p>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button class="btn btn-default save" ng-click="save()" ng-disabled="!bVerifed || bNameExit">保存为营销人群</button>
+                    <button class="btn btn-default cancel" ng-click="cancel()">取消</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="add-tag-ctn" ng-show="bAdd" style="left:{{addBoxLeft}}px; top:{{addBoxTop}}px;">
+        <div class="tag-list-ctn">
+            <div class="title-ctn">
+                <label>标签</label>
+                <div class="input-group filter">
+                  <input type="text" class="form-control" ng-model="filterText">
+                  <span class="input-group-addon">检索</span>
+                </div>
+            </div>
+            <ul class="tag-list">
+                <li ng-repeat="tag in tags|filter:filterText|PaginationFilter:12:currentPage">
+                    <label data-ng-class="{ 'init' : tag.coverage == -1 }"><input type="checkbox" ng-model="tag.selected" ng-disabled="tag.coverage == -1">{{tag['name']}}<span ng-if="tag.coverage == -1">(正在生成中)</span></label>
+                </li>
+            </ul>
+            <div class="nav">
+                <pagination boundary-links="true" total-items="(tags|filter:filterText).length" ng-model="currentPage" items-per-page="12" max-size="5" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+            </div>
+        </div>
+        <div class="btn-ctn">
+            <button class="btn btn-default add" ng-click="tagSave()">添加</button>
+            <button class="btn btn-default" ng-click="tagCancel()">取消</button>
+        </div>
+    </div>
+</div>

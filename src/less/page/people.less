@@ -1,0 +1,197 @@
+.people-add-container{
+    .outer-box{
+        border: 1px solid #f2f2f2;
+        border-radius: 2px;
+        background-color: #fcfcfc;
+        padding: 35px;
+        .form-box{
+            width: 600px;
+            margin: auto;
+            p{
+                margin: 8px 0 0 0;
+            }
+            button{
+                height: 40px;
+                border-radius: 2px;
+                padding: 0 30px;
+            }
+            .save{
+                background-color: #3d8cf9;
+                color: #fff;
+            }
+            .cancel{
+                background-color: #fff;
+            }
+            .tag-ctn{
+                border: 1px solid #ddd;
+                padding: 12px;
+                margin-top: 12px;
+                margin-bottom: 6px;
+                min-height: 155px;
+                span{
+                    float: left;
+                    display: inline-block;
+                    height: 30px;
+                    line-height: 30px;
+                    border-radius: 2px;
+                    padding: 0 10px;
+                    background-color: #f4f8ff;
+                    border: 1px solid #a6caff;
+                    color: #0c79d7;
+                    font-size: 12px;
+                    margin-right: 5px;
+                    margin-bottom: 5px;
+                    em{
+                        margin-left: 8px;
+                        cursor: pointer;
+                    }
+                }
+                .add{
+                    height: 30px;
+                    padding: 0 10px;
+                    background-color: #ededed;
+                    border-color: #cdcdcd;
+                    color: #333;
+                    em{
+                        margin-left: 0;
+                    }
+                }
+            }
+            .tip{
+                margin-bottom: 20px;
+            }
+        }
+    }
+    .add-tag-ctn{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        border: 1px solid #ddd;
+        border-radius: 2px;
+        background-color: #fff;
+        width: 555px;
+        margin-bottom: 20px;
+        .tag-list-ctn{
+            position: relative;
+            padding: 20px 25px 10px;
+            border-bottom: 1px solid #f2f2f2;
+            height: 235px;
+            .title-ctn{
+                height: 30px;
+                label{
+                    font-size: 18px;
+                    color: #333;
+                    line-height: 30px;
+                }
+            }
+            .filter{
+                float: right;
+                width: 185px;
+                height: 30px;
+                .form-control{
+                    height: 30px;
+                }
+            }
+            .tag-list{
+                list-style: none;
+                padding: 0;
+                margin: 10px 0 0;
+                height: 130px;
+                li{
+                    float: left;
+                    display: inline-block;
+                    width: 160px;
+                    line-height: 30px;
+                    label{
+                        cursor: pointer;
+                        input{
+                            margin-right: 5px;
+                        }
+                    }
+                }
+                .init{
+                    text-decoration: line-through;
+                }
+            }
+            .nav{
+                text-align: center;
+                ul{
+                    margin: 0;
+                }
+            }
+        }
+        .btn-ctn{
+            padding: 15px 25px 25px;
+        }
+        button{
+            line-height: 30px;
+            padding: 0 20px;
+            &.add{
+                background-color: #3d8cf9;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.people-list-container{
+    .title-container{
+        margin-bottom: 15px;
+        button{
+            height: 30px;
+            padding: 0 25px;
+            border: 2px;
+            background-color: #3d8cf9;
+            color: #fff;
+            margin-right: 5px;
+        }
+        input{
+            height: 30px;
+            line-height: 30px;
+        }
+        .navbar-right{
+            margin-right: 0;
+        }
+    }
+    .title{
+        font-size: 18px;
+        height: 30px;
+        line-height: 30px;
+    }
+    a{
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    .popup-box{
+        z-index: 100;
+        position: absolute;
+        border: 1px solid #dcdcdc;
+        border-radius: 2px;
+        padding: 20px 25px;
+        width: 245px;
+        background-color: #fff;
+        .form{
+            margin: 10px 0;
+        }
+        h2{
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+        p{
+            margin: 15px 0;
+            line-height: 25px;
+        }
+        button{
+            height: 30px;
+            font-size: 14px;
+            padding: 0 20px;
+        }
+        .save{
+            background-color: #3d8cf9;
+            color: #fff;
+            margin-right: 5px;
+        }
+    }
+}

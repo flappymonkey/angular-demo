@@ -1,0 +1,40 @@
+<div class="loading" ng-show="loading">
+    <div class="ball-pulse">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="tag-import-container" ng-show="!loading">
+    <h1>上传本地文件</h1>
+    <div class="control-ctn">
+        <div class="left">
+            <label id="fileToUploadLabel" class="btn btn-info" for="fileToUpload">选择文件</label>
+            <input style="display:none;" type="file"  name="file" id="fileToUpload" ng-model="filename" onchange="angular.element(this).scope().upload()"/>
+            <p>（支持.csv .txt文件）</p>
+        </div>
+        <div class="right">
+            <div class="icon"></div>
+            <div class="tips" id="uploadTips">
+                {{tips}}
+            </div>
+        </div>
+    </div>
+    <div class="desc-ctn">
+        <h2>操作和数据规范</h2>
+        <div class="ctn">
+            <ul class="left">
+                <li class="title">数据准备：</li>
+                <li>1.  系统支持.csv及.txt格式的文本文件上传</li>
+                <li>2.  .txt文件中，使用的分隔符要求为[\t]</li>
+                <li><a href="#">数据格式.csv下载</a>包括文件格式和范例     <a href="#">数据格式.txt下载</a></li>
+            </ul>
+            <ul>
+                <li class="title">数据上传：</li>
+                <li>1.  选择需要上传的文件</li>
+                <li>2.  我们会对上传的数据进行匹配，若匹配不成功，则上传失败</li>
+                <li>3.  数据上传成功后，我[我的全部标签]中可查看上传的标签</li>
+            </ul>
+        </div>
+    </div>
+</div>

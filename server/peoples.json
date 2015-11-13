@@ -1,0 +1,35 @@
+{
+    "success": true,
+    "code": -1,
+    "data": [{
+        "id": 0,
+        "name": "人群1",
+        "coverage": 10,
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-09-10",
+        "updateTime": "2015-09-10",
+        "tags": [1, 2, 3]
+    },{
+        "id": 1,
+        "name": "人群2",
+        "coverage": 123123,
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-09-10",
+        "updateTime": "2015-09-10",
+        "tags": [1, 2, 3]
+    },{
+        "id": 2,
+        "name": "人群3",
+        "coverage": 11110,
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-09-10",
+        "updateTime": "2015-09-10",
+        "tags": [1, 2, 3]
+    }]
+}

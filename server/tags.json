@@ -1,0 +1,447 @@
+{
+    "success": true,
+    "code": -1,
+    "data": [{
+        "id": 0,
+        "name": "标签",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 1,
+        "name": "标签1",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 2,
+        "name": "标签2",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 3,
+        "name": "标签3",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 4,
+        "name": "标签4",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 5,
+        "name": "标签5",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 6,
+        "name": "标签6",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 7,
+        "name": "标签7",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 8,
+        "name": "标签8",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 9,
+        "name": "标签9",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 10,
+        "name": "标签10",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 11,
+        "name": "标签11",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 12,
+        "name": "标签12",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 13,
+        "name": "标签13",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 14,
+        "name": "标签14",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 15,
+        "name": "标签15",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    },{
+        "id": 16,
+        "name": "标签16",
+        "des": "标签描述",
+        "type": 1,
+        "begin": "2015-10-23 21:33:01",
+        "end": "2015-10-23 21:33:01",
+        "con": [{
+            "siteid": [1, 2],
+            "idgoal": [1],
+            "func": "max",
+            "reg": "<",
+            "value": 1
+        }, {
+            "siteid": [1, 2],
+            "idgoal": [1, 3],
+            "func": "min",
+            "reg": ">",
+            "value": 3
+        }],
+        "userid": 1,
+        "creator": 1,
+        "memder": 1,
+        "createTime": "2015-10-23",
+        "updateTime": "2015-09-10",
+        "coverage": 365522
+    }]
+}

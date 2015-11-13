@@ -1,0 +1,520 @@
+<div class="loading" ng-show="loading">
+  <div class="ball-pulse">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="tag-add-container" ng-show="!loading">
+    <h1>修改标签</h1>
+    <div class="outer-box">
+        <form class="form-box form-horizontal" name="add_form" novalidate>
+            <div class="form-group">
+                <label for="nick" class="col-sm-2 control-label">标签名称</label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" placeholder="" class="form-control" data-ng-model="tag.name" ng-maxlength=20 required ng-focus ng-change="verification()" ng-blur="checkNameUni()">
+                    <small class="text-danger" ng-show="bNameExit">
+                        该标签名已经存在，请换个名字
+                    </small>
+                    <div class="error" ng-show="add_form.name.$dirty && add_form.name.$invalid && !add_form.name.$focused">
+                      <small class="text-danger" ng-show="add_form.name.$error.required">
+                          标签名必须填写
+                      </small>
+                      <small class="text-danger" ng-show="add_form.name.$error.maxlength">
+                              标签名长度不能超多20个字符
+                      </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nick" class="col-sm-2 control-label">标签描述</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" name="des" rows="3" style="resize:none;"  data-ng-model="tag.des" ng-maxlength=100 ng-change="verification()"></textarea>
+                    <div class="error" ng-show="add_form.des.$dirty && add_form.des.$invalid && !add_form.des.$focused">
+                      <small class="text-danger" ng-show="add_form.des.$error.maxlength">
+                              标签描述长度不能超多100个字符
+                      </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nick" class="col-sm-2 control-label">标签选项</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline c-radio">
+                        <input id="" type="radio" name="tag_type" data-ng-model="tag.type" value="0" checked>
+                        <span class="fa fa-circle"></span>
+                        实时标签
+                    </label>
+                    <label class="radio-inline c-radio">
+                        <input id="" type="radio" name="tag_type" data-ng-model="tag.type" value="1">
+                        <span class="fa fa-circle"></span>
+                        延时标签<span>(一天间隔)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="contion-ctn">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <p class="text-danger">需同时满足以下条件</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="tag.type == 0">
+                    <label for="nick" class="col-sm-2 control-label">统计时间</label>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <div class="dropdown">
+                                  <a class="dropdown-toggle" role="button" data-toggle="dropdown">
+                                    <div class="input-group"><input type="text" class="form-control" value="{{tag.begin | date:'yyyy-MM-dd HH:mm:ss'}}" placeholder="开始时间" disabled><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                  </a>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <datetimepicker data-ng-model="tag.begin"  data-on-set-time="verification()" />
+                                  </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 inline">
+                                <div class="dropdown">
+                                  <a class="dropdown-toggle" role="button" data-toggle="dropdown">
+                                    <div class="input-group"><input type="text" class="form-control" value="{{tag.end | date:'yyyy-MM-dd HH:mm:ss'}}" placeholder="结束时间" disabled><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                  </a>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <datetimepicker data-ng-model="tag.end"  data-on-set-time="verification()" />
+                                  </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="tag.type == 1">
+                    <label for="nick" class="col-sm-2 control-label">统计时间</label>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <ui-select ng-model="tag.dtType" theme="bootstrap" ng-disabled="disabled" on-select="verification()">
+                                   <ui-select-match placeholder="选择时间段">{{$select.selected.name}}</ui-select-match>
+                                   <ui-select-choices repeat="item.value as item in dtTypeDict">
+                                      {{item.name}}
+                                   </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-sm-6" ng-show="tag.dtType == 1">
+                                <ui-select ng-model="tag.recent" theme="bootstrap" ng-disabled="disabled" on-select="verification()">
+                                   <ui-select-match placeholder="选择天数">{{$select.selected.name}}</ui-select-match>
+                                   <ui-select-choices repeat="item.value as item in recentDict">
+                                      {{item.name}}
+                                   </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-sm-9" ng-show="tag.dtType == 2">
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <div class="col-sm-6">
+                                        <div class="dropdown">
+                                          <a class="dropdown-toggle" role="button" data-toggle="dropdown">
+                                            <div class="input-group"><input type="text" class="form-control" value="{{tag.begin | date:'yyyy-MM-dd HH:mm:ss'}}" placeholder="开始时间" disabled><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </div>
+                                          </a>
+                                          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                            <datetimepicker data-ng-model="tag.begin"  data-on-set-time="verification()" />
+                                          </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 inline">
+                                        <div class="dropdown">
+                                          <a class="dropdown-toggle" role="button" data-toggle="dropdown">
+                                            <div class="input-group"><input type="text" class="form-control" value="{{tag.end | date:'yyyy-MM-dd HH:mm:ss'}}" placeholder="结束时间" disabled><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </div>
+                                          </a>
+                                          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                            <datetimepicker data-ng-model="tag.end"  data-on-set-time="verification()" />
+                                          </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nick" class="col-sm-2 control-label">覆盖站点</label>
+                    <div class="col-sm-10">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <ui-select multiple="" ng-model="tag.sites" theme="bootstrap" ng-disabled="disabled" on-select="selectSite()" on-remove="removeSite()">
+                                       <ui-select-match placeholder="选择站点">{{$item.name}}</ui-select-match>
+                                       <ui-select-choices repeat="site.idsite as site in sites">{{site.name}}</ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nick" class="col-sm-2 control-label">标签条件</label>
+                    <div class="col-sm-10">
+                        <div class="form-group" ng-repeat="item in tag.con" ng-show="tag.type == 0">
+                            <div class="col-sm-4">
+                                <ui-select ng-model="item.goal" theme="bootstrap" ng-disabled="disabled" on-select="verification()">
+                                   <ui-select-match placeholder="选择事件">{{$select.selected.event_name}}</ui-select-match>
+                                   <ui-select-choices repeat="event in events">
+                                        {{event.event_name}}
+                                   </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-sm-4 inline" ng-show="item.goal.sites.length > 1">
+                                <div class="dropdown">
+                                  <a class="dropdown-toggle sites-name" role="button" data-toggle="dropdown">
+                                    <div class="input-group">
+                                        <span class="caret"></span>
+                                        <input type="text" class="btn btn-default form-control" value="{{item.goal.sites | showSiteName}}" placeholder="网站(可多选)" disabled>
+                                    </div>
+                                  </a>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <div ng-click="stop($event)" >
+                                        <ul class="site-list">
+                                            <li ng-repeat="site in item.goal.sites">
+                                                <label>
+                                                  <input type="checkbox" ng-model="site['selected']" ng-click="verification()"> {{site['site_name']}}
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                  </ul>
+                                </div>
+                            </div>
+                            <div ng-show="!$last" class="col-sm-2">
+                                <span class="delete glyphicon glyphicon-remove" ng-click="deleteGoalItem($index)"></span>
+                            </div>
+                            <div ng-show="$last" class="col-sm-2">
+                                <button class="mb-sm btn btn-info" ng-click="addGoalItem()">+</button>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-repeat="item in tag.con" ng-show="tag.type == 1">
+                            <div class="col-sm-3">
+                                <ui-select ng-model="item.goal" theme="bootstrap" ng-disabled="disabled" on-select="verification()">
+                                   <ui-select-match placeholder="选择事件">{{$select.selected.event_name}}</ui-select-match>
+                                   <ui-select-choices repeat="event in events">
+                                        {{event.event_name}}
+                                   </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-sm-3 inline" ng-show="item.goal.sites.length > 1">
+                                <div class="dropdown">
+                                  <a class="dropdown-toggle sites-name" role="button" data-toggle="dropdown">
+                                    <div class="input-group">
+                                        <span class="caret"></span>
+                                        <input type="text" class="btn btn-default form-control" value="{{item.goal.sites | showSiteName}}" placeholder="网站(可多选)" disabled>
+                                    </div>
+                                  </a>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <div ng-click="stop($event)" >
+                                        <ul class="site-list">
+                                            <li ng-repeat="site in item.goal.sites">
+                                                <label>
+                                                  <input type="checkbox" ng-model="site['selected']" ng-click="verification()"> {{site['site_name']}}
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                  </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 inline">
+                                <ui-select ng-model="item.func" theme="bootstrap" ng-disabled="disabled" on-select="verification()">
+                                   <ui-select-match placeholder="函数">{{$select.selected.name}}</ui-select-match>
+                                   <ui-select-choices repeat="func.value as func in funcs">
+                                      {{func.name}}
+                                   </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-sm-2 inline">
+                                <ui-select ng-model="item.reg" theme="bootstrap" ng-disabled="disabled" on-select="verification()">
+                                   <ui-select-match placeholder="表达式">{{$select.selected.name}}</ui-select-match>
+                                   <ui-select-choices repeat="reg.value as reg in regs">
+                                      {{reg.name}}
+                                   </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-sm-2 inline">
+                                 <input type="number" placeholder="取值" class="form-control" ng-model="item.value" ng-change="verification()">
+                            </div>
+                            <div ng-show="!$last" class="col-sm-1 inline">
+                                <span class="delete glyphicon glyphicon-remove" ng-click="deleteGoalItem($index)"></span>
+                            </div>
+                            <div ng-show="$last" class="col-sm-1 inline">
+                                <button class="mb-sm btn btn-info" ng-click="addGoalItem()">+</button>
+                            </div>
+                        </div>
+                        <div ng-show="!bOther" class="form-group">
+                            <div class="col-sm-5">
+                                <button class="mb-sm btn btn-default " ng-click="showOther()"><em class="glyphicon glyphicon-plus"></em>其他条件</button>
+                            </div>
+                        </div>
+                        <div ng-show="bOther">
+                            <p for="nick">来源限制</p>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" rows="3" style="resize:none;"  data-ng-model="tag.referer_url"></textarea>
+                                </div>
+                                 <div class="col-sm-6">
+                                    多个来源请分行处理
+                                </div>
+                            </div>
+                            <p for="nick">地域限制</p>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <table class="addr-setting">
+                                        <tr>
+                                            <th rowspan="2"><label><input type="checkbox" ng-model=" area['华北地区'] " ng-click="areaSelect('华北地区')">华北地区</label></th>
+                                            <td><label><input class="area area1" type="checkbox" ng-model=" region['华北地区']['110']['selected'] " ng-click="provinceSelect('华北地区', '110')">{{region['华北地区']['110']['name']}}</label></td>
+                                            <td><label><input class="area area1" type="checkbox" ng-model=" region['华北地区']['120']['selected'] " ng-click="provinceSelect('华北地区', '120')">{{region['华北地区']['120']['name']}}</label></td>
+                                            <td ng-repeat=" (key, province) in region['华北地区']" ng-if="$index >= 2 && $index < 4">
+                                                <label><input class="area area1" type="checkbox" ng-model=" province['selected'] " ng-click="provinceSelect('华北地区', key)">{{province['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{province['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in province['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('华北地区', key)">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4">
+                                                <label><input class="area area1" type="checkbox" ng-model=" region['华北地区']['150']['selected'] " ng-click="provinceSelect('华北地区', '150')">{{region['华北地区']['150']['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{region['华北地区']['150']['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in region['华北地区']['150']['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('华北地区', '150')">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th><label><input ng-click="areaSelect('东北地区')" type="checkbox" ng-model=" area['东北地区'] " ng-click="areaSelect('东北地区')">东北地区</label></th>
+                                            <td ng-repeat=" (key, province) in region['东北地区']" ng-if="$index < 2">
+                                                <label><input class="area area1" type="checkbox" ng-model=" province['selected'] " ng-click="provinceSelect('东北地区', key)">{{province['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{province['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in province['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('东北地区', key)">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                            <td  colspan="2">
+                                                <label><input class="area area1" type="checkbox" ng-model=" region['东北地区']['230']['selected'] " ng-click="provinceSelect('东北地区', '230')">{{region['东北地区']['230']['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{region['东北地区']['230']['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in region['东北地区']['230']['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('东北地区', '230')">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th rowspan="2"><label><input ng-click="areaSelect('华东地区')" type="checkbox" ng-model=" area['华东地区'] ">华东地区</label></th>
+                                            <td><label><input class="area area1" type="checkbox" ng-model=" region['华东地区']['310']['selected'] " ng-click="provinceSelect('华东地区', '310')">{{region['华东地区']['310']['name']}}</label></td>
+                                            <td ng-repeat=" (key,province) in region['华东地区']" ng-if="$index > 0 && $index < 4">
+                                                <label><input class="area area1" type="checkbox" ng-model=" province['selected'] " ng-click="provinceSelect('华东地区', key)">{{province['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{province['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in province['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('华东地区', key)">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label><input class="area area1" type="checkbox" ng-model=" region['华东地区']['350']['selected'] " ng-click="provinceSelect('华东地区', '350')">{{region['华东地区']['350']['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{region['华东地区']['350']['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in region['华东地区']['350']['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('华东地区', '350')">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                            <td colspan="3">
+                                                <label><input class="area area1" type="checkbox" ng-model=" region['华东地区']['370']['selected'] " ng-click="provinceSelect('华东地区', '370')">{{region['华东地区']['370']['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{region['华东地区']['370']['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in region['华东地区']['370']['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('华东地区', '370')">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th><label><input ng-click="areaSelect('华中地区')" type="checkbox" ng-model=" area['华中地区'] ">华中地区</label></th>
+                                            <td ng-repeat=" (key,province) in region['华中地区']">
+                                                <label><input class="area area1" type="checkbox" ng-model=" province['selected'] " ng-click="provinceSelect('华中地区', key)">{{province['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{province['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in province['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('华中地区', key)">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th><label><input ng-click="areaSelect('华南地区')" type="checkbox" ng-model=" area['华南地区'] ">华南地区</label></th>
+                                            <td ng-repeat=" (key,province) in region['华南地区']" ng-if="$index < 2">
+                                                <label><input class="area area1" type="checkbox" ng-model=" province['selected'] " ng-click="provinceSelect('华南地区', key)">{{province['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{province['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in province['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('华南地区', key)">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                            <td colspan="2">
+                                                <label><input class="area area1" type="checkbox" ng-model=" region['华南地区']['460']['selected'] " ng-click="provinceSelect('华南地区', '460')">{{region['华南地区']['460']['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{region['华南地区']['460']['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in region['华南地区']['460']['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('华南地区', '460')">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th rowspan="2"><label><input ng-click="areaSelect('西南地区')" type="checkbox" ng-model=" area['西南地区'] ">西南地区</label></th>
+                                            <td><label><input class="area area1" type="checkbox" ng-model=" region['西南地区']['500']['selected'] " ng-click="provinceSelect('西南地区', '500')">{{region['西南地区']['500']['name']}}</label></td>
+                                            <td ng-repeat=" (key,province) in region['西南地区']" ng-if="$index > 0 && $index < 4">
+                                                <label><input class="area area1" type="checkbox" ng-model=" province['selected'] " ng-click="provinceSelect('西南地区', key)">{{province['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{province['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in province['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('西南地区', key)">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td ng-repeat=" (key,province) in region['西南地区']" ng-if="$index == 4">
+                                                <label><input class="area area1" type="checkbox" ng-model=" province['selected'] " ng-click="provinceSelect('西南地区', key)">{{province['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{province['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in province['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('西南地区', key)">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th rowspan="2"><label><input ng-click="areaSelect('西北地区')" type="checkbox" ng-model=" area['西北地区'] ">西北地区</label></th>
+                                            <td ng-repeat=" (key,province) in region['西北地区']" ng-if="$index < 4">
+                                                <label><input class="area area1" type="checkbox" ng-model=" province['selected'] " ng-click="provinceSelect('西北地区', key)">{{province['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{province['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in province['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('西北地区', key)">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                          <td colspan="4" ng-repeat=" (key,province) in region['西北地区']" ng-if="$index == 4">
+                                                <label><input class="area area1" type="checkbox" ng-model=" province['selected'] " ng-click="provinceSelect('西北地区', key)">{{province['name']}}</label>
+                                                <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{province['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in province['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('西北地区', key)">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th><label><input ng-click="areaSelect('其他地区')" type="checkbox" ng-model=" area['其他地区'] ">其他地区</label></th>
+                                            <td>
+                                              <label><input class="area area1" type="checkbox" ng-model=" region['其他地区']['710']['selected'] " ng-click="provinceSelect('其他地区', '710')">{{region['其他地区']['710']['name']}}</label>
+                                              <span class="caret">
+                                                <div class="cities">
+                                                    <h2>{{region['其他地区']['710']['name']}}</h2>
+                                                    <ul>
+                                                        <li ng-repeat=" city in region['其他地区']['710']['city'] ">
+                                                            <label><input type="checkbox" ng-model="city['selected']" ng-click="citySelect('其他地区', '710')">{{city['name']}}</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </span>
+                                            </td>
+                                            <td>
+                                              <label><input class="area area1" type="checkbox" ng-model=" region['其他地区']['810']['selected'] " ng-click="provinceSelect('其他地区', '810')">{{region['其他地区']['810']['name']}}</label>
+                                            </td>
+                                            <td colspan="2">
+                                              <label><input class="area area1" type="checkbox" ng-model=" region['其他地区']['820']['selected'] " ng-click="provinceSelect('其他地区', '820')">{{region['其他地区']['820']['name']}}</label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button class="mb-sm btn btn-primary" ng-click="save()" ng-disabled="!bVerifed || add_form.$invalid || bNameExit">保存</button>
+                    <button class="mb-sm btn btn-default" ng-click="cancel()">取消</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
