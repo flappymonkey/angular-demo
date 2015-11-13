@@ -52,7 +52,7 @@
                             var tagIds = api.cell(rowIdx, ':hidden').data();
                             dataservice.getResource({
                                 method: 'get',
-                                url: '/server/people_tags.json'
+                                url: 'server/people_tags.json'
                             }).then(function(data) {
                                 peopleTagsCache[rowIdx] = data;
                                 $("#child_" + rowIdx).replaceWith(renderChildTable(data));
